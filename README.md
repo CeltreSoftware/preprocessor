@@ -10,3 +10,22 @@ the `include` directory, or download the package with your favorite manager, suc
 CMake's `FetchContent` and, again, include the `include` directory.
 
 ## Supported Preprocessor Options
+
+### Visibility Options
+
+- Windows with the definition of `WINDOWS_EXPORT_SYMBOLS`:
+  - MSVC and Clang:
+    - `CELTRESOFT_API_EXPORT` as `__declspec(dllexport)`
+    - `CELTRESOFT_API_IMPORT` as `__declspec(dllimport)`
+  - GCC/CYGWIN:
+    - `CELTRESOFT_API_EXPORT` as `__attribute__((dllexport))`
+    - `CELTRESOFT_API_IMPORT` as `__attribute__((dllimport))`
+- Windows without the definition of `WINDOWS_EXPORT_SYMBOLS`:
+  - MSVC and CLang:
+    - `CELTRESOFT_API_EXPORT` and `CELTRESOFT_API_IMPORT` as `__declspec(dllimport)`
+  - GCC/CYGWIN:
+    - `CELTRESOFT_API_EXPORT` and `CELTRESOFT_API_IMPORT` as `__attribute__((dllimport))`
+- Other Systems:
+  - GCC and Clang:
+    - `CELTRESOFT_API_EXPORT` as `__attribute__((visibility("default")))`
+    - `CELTRESOFT_API_IMPORT` as `__attribute__((visibility("hidden")))`
