@@ -29,6 +29,7 @@ add_library(${PROJECT_NAME} INTERFACE)
 target_sources(
   ${PROJECT_NAME}
   INTERFACE FILE_SET HEADERS FILES
+            ${PROJECT_SOURCE_DIR}/include/celtresoft/preproc/callconv.hpp
             ${PROJECT_SOURCE_DIR}/include/celtresoft/preproc/visibility.hpp)
 
 if(${PROJECT_IS_TOP_LEVEL})

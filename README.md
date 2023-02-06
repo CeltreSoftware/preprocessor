@@ -11,6 +11,23 @@ CMake's `FetchContent` and, again, include the `include` directory.
 
 ## Supported Preprocessor Options
 
+### Calling Convention Options
+
+- Windows:
+  - MSVC and GCC/CYGWIN:
+    - `CELTRESOFT_CALLCONV_CDECL` as `__cdecl`
+    - `CELTRESOFT_CALLCONV_CLRCALL` as `__clrcall`
+    - `CELTRESOFT_CALLCONV_STDCALL` as `__stdcall`
+    - `CELTRESOFT_CALLCONV_FASTCALL` as `__fastcall`
+    - `CELTRESOFT_CALLCONV_THISCALL` as `__thiscall`
+    - `CELTRESOFT_CALLCONV_VECTORCALL` as `__vectorcall`
+
+Outside of Windows, these options are defined as nothing as they are only used for Windows.
+
+Note that `CELTRESOFT_CALLCONV_STDCALL` is equivalent to `WINAPI` as both are definitions for
+`__stdcall` and `CELTRESOFT_CALLCONV_CDECL` will be used in cross platform functions as it is
+defined as `__cdecl`.
+
 ### Visibility Options
 
 - Windows with the definition of `WINDOWS_EXPORT_SYMBOLS`:
