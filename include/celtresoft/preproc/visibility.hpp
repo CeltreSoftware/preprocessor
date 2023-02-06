@@ -49,7 +49,8 @@
 #    define CELTRESOFT_API_EXPORT __attribute__((visibility("default")))
 #    define CELTRESOFT_API_IMPORT __attribute__((visibility("hidden")))
 #  else // __GNUC__ >= 4
-#    warning Compiler unsupported by CeltreSoftware's Preprocessor library for export/import attributes
+#    warning                                                                   \
+        "Compiler unsupported by CeltreSoftware's Preprocessor library for export/import attributes"
 #    define CELTRESOFT_API_EXPORT
 #    define CELTRESOFT_API_EXPORT
 #  endif // __GNUC__ >= 4

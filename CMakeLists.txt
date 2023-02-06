@@ -25,7 +25,7 @@
 cmake_minimum_required(VERSION 3.23)
 project(
   CELTRE_SOFTWARE_PREPROCESSOR
-  VERSION 1.0.0
+  VERSION 1.0.1
   DESCRIPTION
     "Interface library with definitions for preprocessor options to support multiple compiler decorations."
   HOMEPAGE_URL "https://github.com/CeltreSoftware/preprocessor"
