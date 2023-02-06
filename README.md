@@ -5,9 +5,31 @@ decorations.
 
 ## How To Use
 
-This is a header only library with only definitions, so you can simply download the code and include
-the `include` directory, or download the package with your favorite manager, such as `vcpkg` or
-CMake's `FetchContent` and, again, include the `include` directory.
+Download the package with your favorite manager, such as `vcpkg` or CMake's `FetchContent` and then,
+once exposed, simply link your target to the library. This will expose all the required options to
+build and link the target using CeltreSoftware's Preprocessor Library.
+
+For example:
+
+```cmake
+cmake_minimum_required(VERSION 3.23)
+project(MyProject)
+
+include(FetchContent)
+
+FetchContent_Declare(
+  celtresoft_preproc
+  GIT_REPOSITORY https://github.com/CeltreSoftware/preprocessor.git
+  GIT_TAG main)
+
+FetchContent_MakeAvailable(celtresoft_preproc)
+
+add_executable(${PROJECT_NAME})
+target_sources(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/src/main.cpp)
+target_link_libraries(${PROJECT_NAME} PRIVATE CELTRE_SOFTWARE_PREPROCESSOR)
+```
+
+This will add any compiler options and definitions as well as include directories required.
 
 ## Supported Preprocessor Options
 
@@ -46,3 +68,11 @@ defined as `__cdecl`.
   - GCC and Clang:
     - `CELTRESOFT_API_EXPORT` as `__attribute__((visibility("default")))`
     - `CELTRESOFT_API_IMPORT` as `__attribute__((visibility("hidden")))`
+
+### Architecture Options
+
+While not visible through code, this project creates definitions that can be inherited in other
+projects for 32-bit vs 64-bit architectures.
+
+- `CELTRESOFT_ARCH_64BIT` in a 64-bit architecture (when `sizeof(void*) == 8`)
+- `CELTRESOFT_ARCH_32BIT` in a 32-bit architecture (when `sizeof(void*) == 4`)
