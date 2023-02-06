@@ -38,6 +38,9 @@ target_sources(
             ${PROJECT_SOURCE_DIR}/include/celtresoft/preproc/callconv.hpp
             ${PROJECT_SOURCE_DIR}/include/celtresoft/preproc/visibility.hpp)
 
+target_include_directories(${PROJECT_NAME}
+                           INTERFACE ${PROJECT_SOURCE_DIR}/include)
+
 if(${CMAKE_SIZEOF_VOID_P} STREQUAL 8)
   target_compile_definitions(${PROJECT_NAME} INTERFACE CELTRESOFT_ARCH_64BIT)
 else()
@@ -48,6 +51,3 @@ if(${PROJECT_IS_TOP_LEVEL})
   set_target_properties(${PROJECT_NAME} PROPERTIES VERIFY_INTERFACE_HEADER_SETS
                                                    ON)
 endif()
-
-target_include_directories(${PROJECT_NAME}
-                           INTERFACE ${PROJECT_SOURCE_DIR}/include)
