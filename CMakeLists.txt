@@ -48,3 +48,6 @@ if(${PROJECT_IS_TOP_LEVEL})
   set_target_properties(${PROJECT_NAME} PROPERTIES VERIFY_INTERFACE_HEADER_SETS
                                                    ON)
 endif()
+
+target_include_directories(${PROJECT_NAME}
+                           INTERFACE ${PROJECT_SOURCE_DIR}/include)
