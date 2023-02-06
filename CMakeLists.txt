@@ -25,7 +25,7 @@
 cmake_minimum_required(VERSION 3.23)
 project(
   CELTRE_SOFTWARE_PREPROCESSOR
-  VERSION 1.0.1
+  VERSION 1.1.0
   DESCRIPTION
     "Interface library with definitions for preprocessor options to support multiple compiler decorations."
   HOMEPAGE_URL "https://github.com/CeltreSoftware/preprocessor"
@@ -37,6 +37,12 @@ target_sources(
   INTERFACE FILE_SET HEADERS FILES
             ${PROJECT_SOURCE_DIR}/include/celtresoft/preproc/callconv.hpp
             ${PROJECT_SOURCE_DIR}/include/celtresoft/preproc/visibility.hpp)
+
+if(${CMAKE_SIZEOF_VOID_P} STREQUAL 8)
+  target_compile_definitions(${PROJECT_NAME} INTERFACE CELTRESOFT_ARCH_64BIT)
+else()
+  target_compile_definitions(${PROJECT_NAME} INTERFACE CELTRESOFT_ARCH_32BIT)
+endif()
 
 if(${PROJECT_IS_TOP_LEVEL})
   set_target_properties(${PROJECT_NAME} PROPERTIES VERIFY_INTERFACE_HEADER_SETS
